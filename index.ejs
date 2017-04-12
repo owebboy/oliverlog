@@ -1,0 +1,22 @@
+<img src="me.jpg">
+
+
+<h1>posts</h1>
+<ul>
+  <% for(var i in public.posts._data){ %>
+    <div class="list-item">
+      <% var post = public.posts._data[i] %>
+      <a href="/posts/<%= i %>"><span class="list-item-date"><%= post.date %></span></a> ~ <%= post.title %>
+    </div>
+  <% } %>
+</ul>
+
+<h1>projects</h1>
+<ul><li>  <a href="https://github.com/owebboy/buttons">buttons</a>: A bunch of beautifully styled buttons
+</li><li>  <a href="https://github.com/owebboy/minimal.css">minimal.css</a>: A simple, easy to use styleguide
+</li><li>  <a href="https://github.com/owebboy/typographic-styles">typographic styles</a>: Simple styleguide. Built for typeography
+</li><li>  <a href="http://owebboy.github.io/stain/">stain</a>: This is a good resource for colors on the web
+</li><li>  <a href="http://owebboy.github.io/presswork/">presswork</a>: This is a great styleguide for a bear bones typographic website
+</li><li>  <a href="https://github.com/owebboy/authentication-template">authentication-template</a>: This is a template for nodejs and express. Uses passport.js and mongoose.js to build a simple authentication app.
+</li><li>  <a href="https://owebboy.github.io/o-syntax/">o-syntax</a>: 21st century naming conventions
+</li><li>  <a href="http://owebboy.github.io/ovis/">ovis</a>: specification for o vegetable internet systems</li></ul>
