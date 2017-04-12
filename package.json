@@ -2,10 +2,6 @@
   "name": "oliverlog",
   "version": "1.0.0",
   "description": "a log of events from oliver pope",
-  "main": "index.md",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "Oliver Pope",
   "license": "MIT",
   "devDependencies": {
