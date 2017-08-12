@@ -4,13 +4,5 @@
   "description": "a log of events from oliver pope",
   "author": "Oliver Pope",
   "license": "MIT",
-  "devDependencies": {
-    "git-scripts": "^0.2.1",
-    "surge": "^0.19.0"
-  },
-  "git": {
-    "scripts": {
-      "pre-push": "harp compile; surge --project ./www"
-    }
-  }
+  "dependencies": {}
 }
