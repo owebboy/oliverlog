@@ -1,0 +1,96 @@
+<html>
+  <head>
+    <title>Oliver Pope &lt;opope@me.com&gt;</title>
+    <link rel="stylesheet" href="/index.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <!-- BEGIN METADATA -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8">
+    <meta name="author" content="oliver pope">
+    <meta name="description" content="As an eighteen year old web developer, Oliver Pope travels to the web’s outer-rim. In a state of perpetual learning, he works with the latest tools and web languages to create a beautifully dynamic experience.">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name="google-site-verification" content="EG4VLtKDoSAaZvnWuIvfDSOss4PpO-Gx5B3rSWcSHzA" />
+    <meta name="msvalidate.01" content="852AF3C72F623E8FEB7E054A5D1B954D" />
+    
+    
+  </head>
+  <body>
+    <a href="/"><img src="https://www.gravatar.com/avatar/265f18ea0fb027ad5fd67a936be309b7" class="me"></a>
+    
+    <div class="post">
+      <div class="data">
+        
+        <h1>Simple MongoDB queries in Node.js</h1>
+        2016-07-29
+        
+      </div>
+      <p>With <a href="//nodejs.org">node.js</a>, you can build amazingly complex server-side applications that are easy to develop in a very quick time. The most important part of the development process is picking the right database architecture, and with <code>node.js</code> the perfect solution is MongoDB using the module <a href="http://mongoosejs.com/">mongoose.js</a>.</p>
+<h2>Schemas</h2><p>To save data to mongodb, it must be a part of a schema, defining a schema is very simple:</p>
+<pre><code class="language-js">var mongoose = require(&#39;mongoose&#39;);
+
+// Schema
+var Channel = mongoose.model(&#39;channel&#39;, {
+  name: String,
+  number: Number
+});
+</code></pre>
+<p>A schema is a JavaScript object that defines how you will save your documents. The value written as <code>String</code> or <code>Number</code> signifies which type of data you will be using. A schema is basically the template of the document.</p>
+<h2>Creating a single document</h2><p>To create a single document in the Schema &quot;Channel&quot;, use the mongoose <code>create</code> function as so:</p>
+<pre><code class="language-js">Channel.create({
+  name: &#39;National Geographic&#39;,
+  number: 208
+}, function(err, channel) {
+  if (err) return next(err);
+  return console.log(channel);
+});
+//-&gt; { _id: 001, name: &#39;National Geographic&#39;, number: 208 }
+</code></pre>
+<h2>Finding a single document</h2><p>To find a single document, use the <code>findOne</code> function along with a simple query function such as this:</p>
+<pre><code class="language-js">Channel.findOne({ name: &#39;National Geographic&#39; }, function(err, channel) {
+  if (err) return next(err);
+  return console.log(channel);
+});
+//-&gt; { _id: 001, name: &#39;National Geographic&#39;, number: 208 }
+</code></pre>
+<h2>Find and update a single document</h2><p>To find and update a single document use the <code>findOneAndUpdate</code> function to use a query to find a document and add the data to change:</p>
+<pre><code class="language-js">Channel.findOneAndUpdate({ name: &#39;National Geographic&#39; },
+{ channel: 209}, function(err, channel) {
+  if (err) return next(err);
+  return console.log(channel);
+});
+//-&gt; { _id: 001, name: &#39;National Geographic&#39;, number: 209 }
+</code></pre>
+<h2>Find and remove a single document</h2><p>To find and remove a single document use the <code>findOneAndRemove</code> document. This will use a query to find a document and then delete it from the db.</p>
+<pre><code class="language-js">Channel.findOneAndRemove({ name: &#39;National Geographic&#39; }, function(err, doc, result) {
+  // error: any errors that occurred
+  // doc: the document before updates are applied if `new: false`, or after updates if `new = true`
+  // result: [raw result from the MongoDB driver](http://mongodb.github.io/node-mongodb-native/2.0/api/Collection.html#findAndModify)
+});
+</code></pre>
+<h2>Find a collection of documents</h2><p>To find a collection of documents, use the <code>find</code> function:</p>
+<pre><code class="language-js">Channel.find({}, function(err, channels) {
+  if (err) return next(err);
+  return console.log(channels);
+});
+//-&gt; [{ _id: 001, name: &#39;National Geographic&#39;, number: 209 }, { _id: 002, name: &#39;Disney Channel&#39;, number: 290 }, { _id: 003, name: &#39;Disney Channel&#39;, number: 202 }]
+</code></pre>
+<p>NOTE: <code>{}</code> will return all documents in a particular collection, as there are no arguments.</p>
+    </div>
+    <script>
+    console.log('I am available for hire! Call me: (269) 281-6290');
+    </script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-103284779-1', 'auto');
+      ga('send', 'pageview');
+    
+    </script>
+  </body>
+</html>
